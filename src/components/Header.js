@@ -5,11 +5,13 @@ import Nav from './Nav';
 // landmark region; the logo links back to the homepage.
 function Header() {
   return (
-    <header>
-      <a href="/" aria-label="Little Lemon home">
-        <img src={logo} alt="Little Lemon logo" />
-      </a>
-      <Nav />
+    <header className="header">
+      <div className="container header__inner">
+        <a href="/" className="header__logo" aria-label="Little Lemon home">
+          <img src={logo} alt="Little Lemon logo" />
+        </a>
+        <Nav />
+      </div>
     </header>
   );
 }

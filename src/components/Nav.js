@@ -3,8 +3,8 @@
 // Plain anchors are used here; client-side routing is introduced later.
 function Nav() {
   return (
-    <nav aria-label="Main navigation">
-      <ul>
+    <nav className="nav" aria-label="Main navigation">
+      <ul className="nav__list">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/menu">Menu</a></li>

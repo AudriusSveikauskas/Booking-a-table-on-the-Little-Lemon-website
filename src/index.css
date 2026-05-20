@@ -1,13 +1,93 @@
+/* Brand fonts from Google Fonts: Markazi Text for display, Karla for UI. */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700;800&family=Markazi+Text:wght@400;500;600&display=swap');
+
+/* ----------------------------------------------------------------------- */
+/* Design tokens — the single source of truth for the Little Lemon brand.   */
+/* ----------------------------------------------------------------------- */
+:root {
+  /* Colours */
+  --ll-green: #495e57;
+  --ll-yellow: #f4ce14;
+  --ll-salmon: #ee9972;
+  --ll-peach: #fbdabb;
+  --ll-light: #edefee;
+  --ll-dark: #333333;
+  --ll-white: #ffffff;
+
+  /* Typography */
+  --font-display: 'Markazi Text', serif;
+  --font-body: 'Karla', sans-serif;
+
+  /* Layout */
+  --content-max-width: 1200px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+  --radius: 16px;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Reset and base styles                                                    */
+/* ----------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ll-dark);
+  background-color: var(--ll-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0 0 var(--space-md);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Centred content column reused by every section. */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Visually hidden but available to screen readers (e.g. skip links). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
