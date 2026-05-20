@@ -1,16 +1,22 @@
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import Main from './components/Main';
 import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+import BookingPage from './pages/BookingPage';
 
-// Root component. A React fragment keeps the markup free of an extra,
-// non-semantic wrapper <div>; the page is described entirely by the
-// header / main / footer landmark components.
+// Root component. The header and footer are persistent; the routed pages are
+// rendered inside the <main> landmark. A fragment avoids an extra wrapper div.
 function App() {
   return (
     <>
       <Header />
-      <Main />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/booking" element={<BookingPage />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );
