@@ -4,6 +4,62 @@
 /* centres its content with the .container helper from index.css.           */
 /* ----------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------------- */
+/* Reusable elements                                                        */
+/* ----------------------------------------------------------------------- */
+
+/* Pill-shaped call-to-action button in the brand yellow. */
+.button {
+  display: inline-block;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--ll-yellow);
+  color: var(--ll-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
+  filter: brightness(0.95);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--ll-green);
+  outline-offset: 2px;
+}
+
+.button--secondary {
+  background-color: var(--ll-green);
+  color: var(--ll-white);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Generic content card with soft rounded corners and a subtle shadow. */
+.card {
+  background-color: var(--ll-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Section heading used by every homepage band. */
+.section__title {
+  margin-bottom: var(--space-lg);
+}
+
 /* --- Header & navigation --------------------------------------------------*/
 .header {
   background-color: var(--ll-white);
@@ -37,6 +93,20 @@
 .nav__list a {
   font-weight: 700;
   padding: var(--space-sm);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav__list a:hover,
+.nav__list a:focus,
+.nav__list a.active {
+  color: var(--ll-green);
+  border-bottom-color: var(--ll-yellow);
+}
+
+.nav__list a:focus-visible {
+  outline: 3px solid var(--ll-green);
+  outline-offset: 2px;
 }
 
 /* --- Main content ---------------------------------------------------------*/
