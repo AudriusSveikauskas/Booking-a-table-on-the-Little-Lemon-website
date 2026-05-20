@@ -24,7 +24,11 @@ function Specials() {
                   <span className="price">{dish.price}</span>
                 </div>
                 <p>{dish.description}</p>
-                <a className="special-card__order" href="/order">
+                <a
+                  className="special-card__order"
+                  href="/order"
+                  aria-label={`Order ${dish.title} for delivery`}
+                >
                   Order a delivery
                 </a>
               </div>
