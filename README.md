@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Little Lemon — Reserve a table
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A responsive React web app for the **Little Lemon** restaurant that lets
+customers reserve a table online. Built for the Meta Front-End Developer
+Capstone project.
 
-## Available Scripts
+The app presents the restaurant's homepage (hero, weekly specials,
+testimonials and an about section) and a fully functional, validated booking
+flow that fetches available times from a booking API and confirms the
+reservation.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Responsive layout** — mobile-first CSS using Flexbox and CSS Grid, with
+  breakpoints for tablet and desktop.
+- **Semantic, accessible markup** — `header` / `nav` / `main` / `footer`
+  landmarks, a skip-to-content link, labelled form controls, `aria-*`
+  attributes, `role="alert"` errors and visible focus states.
+- **Client-side routing** — `react-router-dom` with Home, Booking and
+  Confirmation pages.
+- **Stateful booking form** — available times held in a `useReducer` store and
+  shared between the page and the form.
+- **API integration** — available times are fetched per selected date and the
+  reservation is submitted to the booking API.
+- **Validated form** — combined HTML5 and React validation with meaningful,
+  per-field error messages and a disabled submit button while invalid.
+- **Unit tests** — React Testing Library + Jest covering the form, validation
+  and the API query reducers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React (Create React App / `react-scripts`)
+- `react-router-dom` 6
+- Jest + React Testing Library
+- Plain CSS with custom-property design tokens
 
-### `npm test`
+## Getting started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- [Node.js](https://nodejs.org/) 18 or newer
+- npm (bundled with Node.js)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/AudriusSveikauskas/Booking-a-table-on-the-Little-Lemon-website.git
+cd Booking-a-table-on-the-Little-Lemon-website
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Running the app
 
-### `npm run eject`
+```bash
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Open <http://localhost:3000> to view it in the browser. The page reloads on
+edits.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Running the tests
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm test
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Runs the test suite in watch mode. To run once (e.g. in CI):
 
-## Learn More
+```bash
+# macOS / Linux
+CI=true npm test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Windows PowerShell
+$env:CI="true"; npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Building for production
 
-### Code Splitting
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Outputs an optimised production bundle to the `build/` folder.
 
-### Analyzing the Bundle Size
+## Project structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+src/
+├── api.js                  Booking API (fetchAPI / submitAPI)
+├── App.js                  Layout + routes
+├── index.js                Entry point (BrowserRouter)
+├── index.css               Design tokens, base styles, helpers
+├── App.css                 Layout and component styles
+├── assets/                 Logo, photography and icons (from the brand kit)
+├── components/
+│   ├── Header.js  Nav.js   Site header and navigation
+│   ├── Hero.js             Homepage call-to-action
+│   ├── Specials.js         Weekly specials (from data)
+│   ├── Testimonials.js     Customer reviews
+│   ├── Chicago.js          About section
+│   ├── Footer.js           Site footer
+│   └── BookingForm.js      Validated, controlled reservation form
+├── data/specials.js        Specials content
+└── pages/
+    ├── HomePage.js         Composes the homepage sections
+    ├── BookingPage.js      Booking state + submit handler
+    └── ConfirmedBooking.js Confirmation page
 
-### Making a Progressive Web App
+docs/                       Design and UX documentation
+├── 01-wireframe.md
+├── 02-components.md
+├── 03-design-fundamentals.md
+└── 04-ux-evaluation.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## The booking flow
 
-### Advanced Configuration
+1. The user opens **Reserve a table**.
+2. `initializeTimes()` loads the available times for today from `fetchAPI`.
+3. Choosing a date dispatches an update so `updateTimes()` refetches the times
+   for that date.
+4. The form validates date, time, guests (1–10) and occasion; submit is
+   enabled only when everything is valid.
+5. On submit, `submitAPI` is called and the user is routed to the confirmation
+   page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Documentation
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Design and UX artefacts (wireframe, component design, brand style guide and the
+heuristic UX evaluation) live in the [`docs/`](docs/) folder.
