@@ -3,7 +3,7 @@
 // exercises (hero, highlights, testimonials, about, booking).
 function Main() {
   return (
-    <main>
+    <main className="main">
       Homepage
     </main>
   );
