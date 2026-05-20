@@ -130,6 +130,29 @@ ul {
   padding-inline: var(--space-md);
 }
 
+/* Skip link: off-screen until focused, then visible at the top-left so a
+   keyboard user can jump straight to the main content. */
+.skip-link {
+  position: absolute;
+  left: var(--space-sm);
+  top: -3rem;
+  z-index: 100;
+  background-color: var(--ll-green);
+  color: var(--ll-white);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 8px 8px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Remove the default focus ring on the programmatically focused main region. */
+.main:focus {
+  outline: none;
+}
+
 /* Visually hidden but available to screen readers (e.g. skip links). */
 .visually-hidden {
   position: absolute;

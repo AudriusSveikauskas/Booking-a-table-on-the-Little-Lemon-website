@@ -11,8 +11,10 @@ import ConfirmedBooking from './pages/ConfirmedBooking';
 function App() {
   return (
     <>
+      {/* Lets keyboard and screen-reader users jump straight past the nav. */}
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Header />
-      <main className="main">
+      <main id="main-content" className="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/booking" element={<BookingPage />} />
