@@ -5,7 +5,7 @@ import { useState } from 'react';
 // `availableTimes` (the list of selectable times) is provided by the parent,
 // which also owns the times state; `dispatch` lets the form ask the parent to
 // recompute the times when the chosen date changes.
-function BookingForm({ availableTimes = [], dispatch }) {
+function BookingForm({ availableTimes = [], dispatch, submitForm }) {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [guests, setGuests] = useState(1);
@@ -22,9 +22,10 @@ function BookingForm({ availableTimes = [], dispatch }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // Submission is wired to the API in a later exercise.
     const reservation = { date, time, guests, occasion };
-    console.log('Reservation submitted', reservation);
+    if (submitForm) {
+      submitForm(reservation);
+    }
   }
 
   return (

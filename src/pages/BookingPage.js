@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BookingForm from '../components/BookingForm';
-import { fetchAPI } from '../api';
+import { fetchAPI, submitAPI } from '../api';
 
 // Creates the initial available-times state from the API, using today's date.
 export function initializeTimes() {
@@ -19,13 +20,26 @@ export function updateTimes(state, action) {
 
 function BookingPage() {
   const [availableTimes, dispatch] = useReducer(updateTimes, undefined, initializeTimes);
+  const navigate = useNavigate();
+
+  // Submits the reservation to the API and, on success, navigates to the
+  // confirmation page.
+  function submitForm(formData) {
+    if (submitAPI(formData)) {
+      navigate('/confirmed');
+    }
+  }
 
   return (
     <section className="booking section" aria-labelledby="booking-title">
       <div className="container">
         <h1 id="booking-title">Reserve a table</h1>
         <p>Choose a date and time and we'll get your table ready.</p>
-        <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+        <BookingForm
+          availableTimes={availableTimes}
+          dispatch={dispatch}
+          submitForm={submitForm}
+        />
       </div>
     </section>
   );
